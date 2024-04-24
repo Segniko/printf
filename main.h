@@ -14,7 +14,7 @@ int _printf(const char *format, ...) {
             format++;
             switch (*format) {
                 case 'c':
-                    c = va_arg(args, int);
+                    c = (char)va_arg(args, int);
                     putchar(c);
                     count++;
                     break;
@@ -22,8 +22,8 @@ int _printf(const char *format, ...) {
                     s = va_arg(args, char *);
                     while (*s) {
                         putchar(*s);
-                        s++;
                         count++;
+                        s++;
                     }
                     break;
                 case '%':
@@ -45,6 +45,12 @@ int _printf(const char *format, ...) {
 }
 
 int main() {
-    _printf("Hello, %s! My favorite character is %c. This is a percent sign: %%.\n", "world", 'A');
+    int num = 65;
+    char str[] = "Hello, World!";
+
+    int characters_printed = _printf("Printing a character: %c\nPrinting a string: %s\nPrinting a percent sign: %%\nPrinting an integer: %c\n", 'A', str, num);
+
+    printf("\nTotal characters printed: %d\n", characters_printed);
+
     return 0;
 }
